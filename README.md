@@ -19,8 +19,14 @@ stack-detect, code-conventions, drizzle-patterns, deployment-checklist, flux-ima
 
 ## Installation
 
-```bash
-claude plugin add github:talhabera/nexstep-dev-team
+1. Add the marketplace:
+```
+/plugin marketplace add talhabera/nexstep-dev-team
+```
+
+2. Install the plugin:
+```
+/plugin install nexstep-dev-team
 ```
 
 ## Requirements

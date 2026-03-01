@@ -1,0 +1,9 @@
+{
+  "plugins": [
+    {
+      "name": "nexstep-dev-team",
+      "description": "Specialized AI development team for Next.js/Drizzle/PostgreSQL SaaS projects — 6 agents, 13 skills, parallel worktree execution",
+      "path": "."
+    }
+  ]
+}
