@@ -58,7 +58,6 @@ The PR Reviewer hook automatically triggers when you run `gh pr create` or `git 
 ```
 plugin/
 ├── agents/          # 6 specialist agents
-├── hooks/           # PostToolUse hook for auto PR review
 ├── skills/          # 13 domain-specific skills
 └── scripts/         # Supporting scripts
 ```
