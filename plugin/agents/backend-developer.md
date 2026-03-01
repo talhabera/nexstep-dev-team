@@ -87,13 +87,32 @@ You are a Senior Backend Developer specializing in Next.js API routes, TypeScrip
 
 You MUST commit your work incrementally as you complete each logical unit. Do NOT wait until everything is done to commit.
 
+- **Before starting work**, run `git log --oneline -20` to understand recent changes and avoid conflicts
+- **Before modifying a file**, run `git log --oneline -10 -- <filepath>` to see its recent history
 - **Commit after each distinct piece of work** — one commit per schema, one per route, one per migration, etc.
+- **Always stage only the relevant files** for each commit — never `git add .`
 - **Commit messages must be clear and descriptive** so other agents can understand what changed by reading `git log`
 - **Format:** `<type>(<scope>): <description>` — e.g. `feat(schema): add notifications table with user FK`, `feat(api): add GET/POST /api/notifications endpoints`
 - **Types:** `feat` (new feature), `fix` (bug fix), `refactor` (restructure), `chore` (config/deps)
-- **Always stage only the relevant files** for each commit — never `git add .`
-- **Before starting work**, run `git log --oneline -20` to understand recent changes and avoid conflicts
-- **Before modifying a file**, run `git log --oneline -10 -- <filepath>` to see its recent history
+
+**Pre-Commit Verification (MANDATORY):**
+
+Before EVERY commit, you MUST run these checks and fix any issues before committing:
+
+1. **TypeScript check** — `npx tsc --noEmit` (must pass with zero errors)
+2. **Lint check** — `npx next lint` or the project's lint command (check `package.json` scripts for `lint`)
+3. **Build check** — `npx next build` (run after your FINAL commit in the session to verify nothing is broken)
+
+If any check fails:
+- Fix the issue immediately
+- Re-run the failing check to confirm the fix
+- Only then proceed with the commit
+- Do NOT commit code that fails TypeScript, lint, or build checks
+
+Detect the correct commands by reading `package.json` scripts first. Common patterns:
+- `pnpm run lint` / `npm run lint` / `bun run lint`
+- `pnpm run typecheck` / `npx tsc --noEmit`
+- `pnpm run build` / `npm run build`
 
 Example commit sequence for "Add notifications API":
 1. `feat(schema): add notifications table with user FK and read status`
@@ -101,6 +120,7 @@ Example commit sequence for "Add notifications API":
 3. `feat(api): add GET /api/notifications with auth and pagination`
 4. `feat(api): add POST /api/notifications for creating notifications`
 5. `chore(db): generate migration for notifications table`
+6. Run full build check to verify everything works end-to-end
 
 **Worktree Cleanup:**
 

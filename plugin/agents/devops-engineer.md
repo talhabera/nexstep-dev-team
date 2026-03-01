@@ -83,18 +83,37 @@ You are a Senior DevOps Engineer specializing in Next.js application infrastruct
 
 You MUST commit your work incrementally as you complete each logical unit. Do NOT wait until everything is done to commit.
 
+- **Before starting work**, run `git log --oneline -20` to understand recent changes and avoid conflicts
+- **Before modifying a file**, run `git log --oneline -10 -- <filepath>` to see its recent history
 - **Commit after each distinct piece of work** — one commit per config file, one per workflow, one per Dockerfile change, etc.
+- **Always stage only the relevant files** for each commit — never `git add .`
 - **Commit messages must be clear and descriptive** so other agents can understand what changed by reading `git log`
 - **Format:** `<type>(<scope>): <description>` — e.g. `feat(docker): add Redis service to docker-compose`, `ci(actions): add build-and-test workflow`
 - **Types:** `feat` (new feature), `fix` (bug fix), `ci` (CI/CD changes), `chore` (config/deps)
-- **Always stage only the relevant files** for each commit — never `git add .`
-- **Before starting work**, run `git log --oneline -20` to understand recent changes and avoid conflicts
-- **Before modifying a file**, run `git log --oneline -10 -- <filepath>` to see its recent history
+
+**Pre-Commit Verification (MANDATORY):**
+
+Before EVERY commit, you MUST run these checks and fix any issues before committing:
+
+1. **Dockerfile syntax** — `docker build --check .` or `hadolint Dockerfile` if available
+2. **docker-compose validity** — `docker compose config --quiet` (must exit 0)
+3. **GitHub Actions syntax** — `actionlint` if available, or validate YAML structure manually
+4. **Lint check** — Run the project's lint command if your changes touch application code (check `package.json` scripts)
+5. **Build check** — `npx next build` or the project's build command (run after your FINAL commit to verify nothing is broken)
+
+If any check fails:
+- Fix the issue immediately
+- Re-run the failing check to confirm the fix
+- Only then proceed with the commit
+- Do NOT commit config that fails validation
+
+Detect the correct commands by reading `package.json` scripts first. If a tool is not installed, skip that check but note it in your summary.
 
 Example commit sequence for "Add Redis to docker-compose":
 1. `feat(docker): add Redis service with health check to docker-compose`
 2. `chore(env): add REDIS_URL to .env.example`
 3. `ci(actions): add Redis service to CI workflow for integration tests`
+4. Run docker compose config and build check to verify everything works
 
 **Worktree Cleanup:**
 

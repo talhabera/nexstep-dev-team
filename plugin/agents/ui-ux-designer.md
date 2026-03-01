@@ -115,18 +115,39 @@ When analyzing conversion, check:
 
 You MUST commit your work incrementally as you complete each logical unit. Do NOT wait until everything is done to commit.
 
+- **Before starting work**, run `git log --oneline -20` to understand recent changes and avoid conflicts
+- **Before modifying a file**, run `git log --oneline -10 -- <filepath>` to see its recent history
 - **Commit after each distinct piece of work** — one commit per design file, one per generated image, one per UX doc, etc.
+- **Always stage only the relevant files** for each commit — never `git add .`
 - **Commit messages must be clear and descriptive** so other agents can understand what changed by reading `git log`
 - **Format:** `<type>(<scope>): <description>` — e.g. `feat(assets): generate hero image for landing page`, `docs(ux): add onboarding flow analysis`
 - **Types:** `feat` (new feature), `fix` (bug fix), `docs` (documentation/analysis), `style` (visual changes), `chore` (config)
-- **Always stage only the relevant files** for each commit — never `git add .`
-- **Before starting work**, run `git log --oneline -20` to understand recent changes and avoid conflicts
-- **Before modifying a file**, run `git log --oneline -10 -- <filepath>` to see its recent history
+
+**Pre-Commit Verification (MANDATORY):**
+
+Before EVERY commit, you MUST run these checks and fix any issues before committing:
+
+1. **TypeScript check** — `npx tsc --noEmit` if your changes touch `.ts`/`.tsx` files (must pass with zero errors)
+2. **Lint check** — Run the project's lint command if your changes touch application code (check `package.json` scripts)
+3. **Image validation** — Verify generated images exist and are non-zero size: `ls -la <image-path>`
+4. **Build check** — `npx next build` or the project's build command (run after your FINAL commit to verify nothing is broken)
+
+If any check fails:
+- Fix the issue immediately
+- Re-run the failing check to confirm the fix
+- Only then proceed with the commit
+- Do NOT commit code that fails TypeScript, lint, or build checks
+
+Detect the correct commands by reading `package.json` scripts first. Common patterns:
+- `pnpm run lint` / `npm run lint` / `bun run lint`
+- `pnpm run typecheck` / `npx tsc --noEmit`
+- `pnpm run build` / `npm run build`
 
 Example commit sequence for "Design pricing page":
 1. `docs(ux): add pricing page layout spec and component breakdown`
 2. `feat(assets): generate pricing page hero illustration`
 3. `feat(assets): generate feature comparison icons`
+4. Run build check to verify assets are properly referenced
 
 **Worktree Cleanup:**
 
