@@ -1,12 +1,12 @@
 {
   "hooks": {
-    "PostToolUse": [
+    "Stop": [
       {
-        "matcher": "Bash",
+        "matcher": "*",
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "If the Bash command that just executed contained 'gh pr create' or 'git push', trigger the pr-reviewer agent to review all changed files compared to the base branch. Run: git diff --name-only $(git merge-base HEAD main)..HEAD to get the list of changed files, then review each one.",
+            "prompt": "Before stopping, check if any Bash commands in this session contained 'gh pr create' or 'git push'. If so, trigger the pr-reviewer agent to review all changed files compared to the base branch. Run: git diff --name-only $(git merge-base HEAD main)..HEAD to get the list of changed files, then review each one.",
             "timeout": 120
           }
         ]
