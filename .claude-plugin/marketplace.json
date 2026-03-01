@@ -14,7 +14,7 @@
         "name": "Talha Bera",
         "email": "bera@nexstep.app"
       },
-      "source": ".",
+      "source": "./plugin",
       "category": "development",
       "homepage": "https://github.com/talhabera/nexstep-dev-team"
     }
