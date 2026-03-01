@@ -1,9 +1,22 @@
 {
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "nexstep-dev-team",
+  "description": "Specialized AI development team for Next.js/Drizzle/PostgreSQL SaaS projects",
+  "owner": {
+    "name": "Talha Bera",
+    "email": "bera@nexstep.app"
+  },
   "plugins": [
     {
       "name": "nexstep-dev-team",
       "description": "Specialized AI development team for Next.js/Drizzle/PostgreSQL SaaS projects — 6 agents, 13 skills, parallel worktree execution",
-      "path": "."
+      "author": {
+        "name": "Talha Bera",
+        "email": "bera@nexstep.app"
+      },
+      "source": ".",
+      "category": "development",
+      "homepage": "https://github.com/talhabera/nexstep-dev-team"
     }
   ]
 }
