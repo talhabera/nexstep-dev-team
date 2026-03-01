@@ -101,3 +101,7 @@ Example commit sequence for "Build settings page":
 2. `feat(ui): add SettingsNav sidebar component`
 3. `feat(page): add /settings route with layout and navigation`
 4. `style(settings): add responsive styles for mobile viewport`
+
+**Worktree Cleanup:**
+
+If you are running in a worktree (check with `git worktree list`), after all your work is committed, the orchestrator will handle merging and cleanup. Do NOT remove the worktree yourself — just ensure all changes are committed before you finish.

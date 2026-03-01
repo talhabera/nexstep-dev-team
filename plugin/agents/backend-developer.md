@@ -101,3 +101,7 @@ Example commit sequence for "Add notifications API":
 3. `feat(api): add GET /api/notifications with auth and pagination`
 4. `feat(api): add POST /api/notifications for creating notifications`
 5. `chore(db): generate migration for notifications table`
+
+**Worktree Cleanup:**
+
+If you are running in a worktree (check with `git worktree list`), after all your work is committed, the orchestrator will handle merging and cleanup. Do NOT remove the worktree yourself — just ensure all changes are committed before you finish.

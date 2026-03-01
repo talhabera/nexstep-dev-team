@@ -127,3 +127,7 @@ Example commit sequence for "Design pricing page":
 1. `docs(ux): add pricing page layout spec and component breakdown`
 2. `feat(assets): generate pricing page hero illustration`
 3. `feat(assets): generate feature comparison icons`
+
+**Worktree Cleanup:**
+
+If you are running in a worktree (check with `git worktree list`), after all your work is committed, the orchestrator will handle merging and cleanup. Do NOT remove the worktree yourself — just ensure all changes are committed before you finish.

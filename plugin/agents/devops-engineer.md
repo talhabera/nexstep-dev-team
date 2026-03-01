@@ -95,3 +95,7 @@ Example commit sequence for "Add Redis to docker-compose":
 1. `feat(docker): add Redis service with health check to docker-compose`
 2. `chore(env): add REDIS_URL to .env.example`
 3. `ci(actions): add Redis service to CI workflow for integration tests`
+
+**Worktree Cleanup:**
+
+If you are running in a worktree (check with `git worktree list`), after all your work is committed, the orchestrator will handle merging and cleanup. Do NOT remove the worktree yourself — just ensure all changes are committed before you finish.

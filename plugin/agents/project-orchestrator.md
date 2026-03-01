@@ -117,9 +117,30 @@ Agent(subagent_type="nexstep-dev-team:ui-ux-designer", prompt="[full task contex
 Agent(subagent_type="nexstep-dev-team:devops-engineer", prompt="[full task context]", run_in_background=true, isolation="worktree")
 ```
 
-4. **Collect & Report** — When all Phase 1 agents finish, summarize results and launch Phase 2
+4. **Collect & Merge** — When all agents in a phase finish:
+   - Each agent returns a worktree path and branch name (e.g., `.claude/worktrees/abc123` on branch `claude/worktree-abc123`)
+   - Merge each agent's branch into the main working branch:
+     ```
+     git merge <agent-branch> --no-edit
+     ```
+   - If merge conflicts occur, resolve them or ask the user for help
+   - After successful merge, clean up the worktree and branch:
+     ```
+     git worktree remove <worktree-path>
+     git branch -d <agent-branch>
+     ```
+   - Summarize what each agent produced, then launch the next phase
 
-5. **Final Review** — Launch pr-reviewer agent on all changes
+5. **Final Review** — Launch pr-reviewer agent on all changes (no worktree needed — reviewer is read-only)
+
+6. **Final Cleanup** — After all phases complete, verify no leftover worktrees remain:
+   ```
+   git worktree list
+   ```
+   Remove any stale worktrees:
+   ```
+   git worktree prune
+   ```
 
 **Dependency & Blocker Rules:**
 
