@@ -1,0 +1,11 @@
+{
+  "name": "nexstep-dev-team",
+  "version": "1.0.0",
+  "description": "Specialized AI development team for Next.js/Drizzle/PostgreSQL SaaS projects — 6 agents, 13 skills, parallel worktree execution",
+  "author": {
+    "name": "Talha Bera"
+  },
+  "repository": "https://github.com/talhabera/nexstep-dev-team",
+  "license": "MIT",
+  "keywords": ["nextjs", "drizzle", "postgresql", "saas", "devops", "frontend", "backend", "ux"]
+}
